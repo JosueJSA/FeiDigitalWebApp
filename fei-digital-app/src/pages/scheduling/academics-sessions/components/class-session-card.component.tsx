@@ -54,12 +54,13 @@ export function ClassSessionCard(props: {
       elevation={6}
       sx={{ backgroundColor: "#1E263B", color: "white", padding: "1rem" }}
     >
-      <Grid container>
-        <Grid item xs={10} sx={{ textAlign: "justify" }}>
-          <Typography variant="body1">
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12} md={10} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
             Fecha de clase:{" "}
             {new Date(props.session.classDate).toLocaleDateString("es-MX")}{" "}
-            <br />
+          </Typography>
+          <Typography variant="body1">
             Hora de inicio:{" "}
             {dayjs(props.session.initialTime)
               .toDate()
@@ -87,7 +88,7 @@ export function ClassSessionCard(props: {
             <div></div>
           )}
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
               variant="outlined"

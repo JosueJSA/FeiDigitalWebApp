@@ -30,10 +30,11 @@ export function SessionStudentDetailedCard(props: {
       }}
     >
       <Grid container spacing={4}>
-        <Grid item xs={8} sx={{ textAlign: "justify" }}>
-          <Typography variant="body1">
+        <Grid item xs={12} md={8} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
             Nrc: {props.session.nrc} Nombre: {props.session.name}
-            <br />
+          </Typography>
+          <Typography variant="body1">
             Fecha de clase:{" "}
             {new Date(props.session.classDate).toLocaleDateString()} <br />
             De:{" "}
@@ -50,7 +51,7 @@ export function SessionStudentDetailedCard(props: {
             {dayjs(props.session.updated).toDate().toLocaleDateString("es-MX")}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Stack spacing={1} direction={"column"}>
             <Button
               onClick={handleClickWatch}

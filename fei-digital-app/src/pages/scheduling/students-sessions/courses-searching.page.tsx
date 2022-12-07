@@ -74,7 +74,7 @@ export function CoursesSearching() {
   };
 
   return (
-    <Container maxWidth={"md"} sx={{ my: "6rem" }}>
+    <Container maxWidth={"md"} sx={{ mb: "10rem" }}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, x: [-100, 30, 0] }}
@@ -83,7 +83,7 @@ export function CoursesSearching() {
       >
         <Typography
           sx={{ color: "white", textAlign: "left", mb: "1.5rem" }}
-          component="h2"
+          component="h1"
           variant="h4"
         >
           Búsqueda de cursos

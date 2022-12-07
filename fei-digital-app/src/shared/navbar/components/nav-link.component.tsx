@@ -1,4 +1,4 @@
-import { Button, Tooltip } from "@mui/material";
+import { Button, Tooltip, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { NavOption } from "../interface";
@@ -24,7 +24,7 @@ export function NavLink(props: { key: string; page: NavOption }) {
         sx={{ color: "white" }}
         key={props.page.id}
       >
-        {props.page.icon}
+        <Typography component={"h1"}>{props.page.icon}</Typography>
       </Button>
     </Tooltip>
   );

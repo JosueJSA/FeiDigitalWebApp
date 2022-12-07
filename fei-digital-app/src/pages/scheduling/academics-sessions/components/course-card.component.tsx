@@ -39,14 +39,14 @@ export function CourseCard(props: {
       elevation={6}
       sx={{ backgroundColor: "#1E263B", color: "white", padding: "1rem" }}
     >
-      <Grid container>
-        <Grid item xs={8} sx={{ textAlign: "justify" }}>
-          <Typography variant="body1">
-            Nombre del curso: {props.course.name} <br />
-            NRC: {props.course.nrc}
+      <Grid container rowSpacing={2}>
+        <Grid item xs={12} md={8} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
+            Nombre del curso: {props.course.name}
           </Typography>
+          <Typography variant="body1">NRC: {props.course.nrc}</Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Stack spacing={2} direction={"row"}>
             <Button
               onClick={handleConsultCourse}

@@ -64,15 +64,15 @@ export function AcademicDetails() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "justify" }}>
+    <Container maxWidth="xs" sx={{ textAlign: "left", mb: "10rem" }}>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: 100 }}
+        animate={{ opacity: 1, y: 20 }}
         exit={{ opacity: 0 }}
       >
         <Card elevation={8} sx={{ backgroundColor: "#171D2C" }}>
           <CardContent>
-            <Typography variant="h4" sx={{ color: "white" }}>
+            <Typography component="h1" variant="h4" sx={{ color: "white" }}>
               Académico
             </Typography>
             <Typography

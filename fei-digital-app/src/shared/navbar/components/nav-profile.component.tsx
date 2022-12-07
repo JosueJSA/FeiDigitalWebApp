@@ -93,7 +93,11 @@ export function NavProfile() {
       >
         {Object.keys(settings).map((setting) => (
           <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
-            <Typography sx={{ color: "black" }} textAlign="center">
+            <Typography
+              component="h2"
+              sx={{ color: "black" }}
+              textAlign="center"
+            >
               {setting}
             </Typography>
           </MenuItem>

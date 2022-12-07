@@ -179,15 +179,12 @@ export function AcademicForm() {
             sx={{ display: localStorage.getItem("id") ? "flex" : "none" }}
             fullWidth
           >
-            <InputLabel
-              sx={{ color: "#00B8DD" }}
-              id="status-simple-select-label"
-            >
+            <InputLabel sx={{ color: "#00B8DD" }} id="status-label">
               Estado en la aplicación
             </InputLabel>
             <Select
               sx={{ color: "white" }}
-              labelId="status-simple-select-label"
+              labelId="status-label"
               id="status-simple-select"
               label="Estado en la aplicación"
               value={status}
@@ -199,23 +196,12 @@ export function AcademicForm() {
             </Select>
           </FormControl>
           {!localStorage.getItem("access_token") ? (
-            <Grid container sx={{ pr: "1rem" }}>
-              <Grid item sm={9} xs={12}>
-                <CustomTextField
-                  sx={{ display: "flex" }}
-                  value={code}
-                  id="standard-code-input"
-                  label="Código de verificación"
-                  autoComplete="current-password"
-                  onChange={handleTypeCode}
-                />
-              </Grid>
-              <Grid item sm={3} xs={12}>
+            <Grid container>
+              <Grid item md={4} xs={12}>
                 <Button
                   onClick={handleSendMail}
                   variant="contained"
                   sx={{
-                    ml: "1rem",
                     backgroundColor: "#31E1F7",
                     color: "black",
                     width: "100%",
@@ -226,6 +212,15 @@ export function AcademicForm() {
                 >
                   Enviar
                 </Button>
+              </Grid>
+              <Grid item md={8} xs={12}>
+                <CustomTextField
+                  sx={{ display: "flex" }}
+                  value={code}
+                  placeholder="Escribe el código de verificación"
+                  autoComplete="current-password"
+                  onChange={handleTypeCode}
+                />
               </Grid>
             </Grid>
           ) : (

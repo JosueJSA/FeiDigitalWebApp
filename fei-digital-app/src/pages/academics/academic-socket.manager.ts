@@ -52,7 +52,6 @@ export abstract class AcademicSocket {
         token: LocalSession.getSession().token,
       },
     }));
-    console.log(socket);
     return socket;
   };
 

@@ -64,10 +64,10 @@ export function StudentEdition() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "justify" }}>
+    <Container maxWidth="sm" sx={{ textAlign: "left", mb: "10rem" }}>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: 100 }}
+        animate={{ opacity: 1, y: 20 }}
         exit={{ opacity: 0 }}
       >
         <Card
@@ -75,7 +75,7 @@ export function StudentEdition() {
           sx={{ padding: "1rem", backgroundColor: "#171D2C" }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ color: "white" }}>
+            <Typography component="h1" variant="h4" sx={{ color: "white" }}>
               Actualización de estudiante
             </Typography>
             <Typography

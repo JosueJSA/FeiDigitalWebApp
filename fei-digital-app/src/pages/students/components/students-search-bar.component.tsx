@@ -72,8 +72,8 @@ export default function StudentsSearchBar() {
 
   return (
     <Card elevation={6} sx={{ padding: "1rem", backgroundColor: "#171D2C" }}>
-      <Grid container columnSpacing={3}>
-        <Grid item xs={6}>
+      <Grid container columnSpacing={3} rowSpacing={3}>
+        <Grid item xs={12} md={6}>
           <CustomTextField
             autoFocus
             sx={{ display: "flex" }}
@@ -84,7 +84,7 @@ export default function StudentsSearchBar() {
             onChange={handleTypeSearch}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel
@@ -107,9 +107,14 @@ export default function StudentsSearchBar() {
             </FormControl>
           </Box>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item md={2} xs={12}>
           <Button
-            sx={{ height: "100%", backgroundColor: "#00B8DD", color: "black" }}
+            sx={{
+              height: "100%",
+              width: "100%",
+              backgroundColor: "#00B8DD",
+              color: "black",
+            }}
             onClick={handleSearch}
             variant="contained"
             startIcon={<SearchIcon />}

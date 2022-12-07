@@ -11,7 +11,6 @@ import {
 import React, { ChangeEvent, useState } from "react";
 import { useAppDispatch } from "../../../app/hooks";
 import SearchIcon from "@mui/icons-material/Search";
-import { Socket } from "socket.io-client";
 import { CustomTextField } from "../../../styles";
 import { AcademicSocket } from "../academic-socket.manager";
 import { showToastError } from "../../../shared/toast/toastSlice";
@@ -50,8 +49,8 @@ export default function AcademicsSearchBar() {
 
   return (
     <Card elevation={6} sx={{ padding: "1rem", backgroundColor: "#171D2C" }}>
-      <Grid container columnSpacing={3}>
-        <Grid item xs={6}>
+      <Grid container columnSpacing={3} rowSpacing={2}>
+        <Grid item xs={12} md={6}>
           <CustomTextField
             autoFocus
             sx={{ display: "flex" }}
@@ -62,7 +61,7 @@ export default function AcademicsSearchBar() {
             onChange={handleTypeSearch}
           />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Box sx={{ minWidth: 120 }}>
             <FormControl fullWidth>
               <InputLabel
@@ -85,9 +84,14 @@ export default function AcademicsSearchBar() {
             </FormControl>
           </Box>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2}>
           <Button
-            sx={{ backgroundColor: "#00B8DD", color: "black", height: "100%" }}
+            sx={{
+              backgroundColor: "#00B8DD",
+              color: "black",
+              height: "100%",
+              width: "100%",
+            }}
             onClick={handleSearch}
             variant="contained"
             startIcon={<SearchIcon />}

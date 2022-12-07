@@ -40,10 +40,8 @@ export function BreadcrumbsNav() {
   return (
     <Container sx={{ my: "2.5rem" }} maxWidth="lg">
       <Stack sx={{ color: "white" }} spacing={2}>
-        <StyleBreadcrumb separator="›" aria-label="breadcrumb">
-          {breadcrumbs}
-        </StyleBreadcrumb>
         <StyleBreadcrumb
+          sx={{ mt: "2rem" }}
           separator={<NavigateNextIcon fontSize="small" />}
           aria-label="breadcrumb"
         >

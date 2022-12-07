@@ -128,12 +128,16 @@ export function Navbar() {
         <Toolbar disableGutters>
           <AdbIcon sx={{ display: { xs: "none", lg: "flex" }, mr: 1 }} />
           <Brand view="expanded" />
-          <NavOptions />
-          <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" } }}>
-            {getPages().map((page) => (
-              <NavLink key={page.id} page={page} />
-            ))}
-          </Box>
+          {getPages().length !== 0 ? <NavOptions /> : ""}
+          {getPages().length !== 0 ? (
+            <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" } }}>
+              {getPages().map((page) => (
+                <NavLink key={page.id} page={page} />
+              ))}
+            </Box>
+          ) : (
+            ""
+          )}
           {getPages().length !== 0 ? (
             <Button
               onClick={handleSearchCourses}
@@ -141,12 +145,13 @@ export function Navbar() {
               variant="outlined"
               endIcon={<SearchOutlinedIcon />}
             >
-              Buscar cursos
+              <Typography component="h2" variant="body2">
+                Buscar cursos
+              </Typography>
             </Button>
           ) : (
             ""
           )}
-          {getPages().length !== 0 ? <Notification /> : ""}
           <NavProfile />
         </Toolbar>
       </Container>

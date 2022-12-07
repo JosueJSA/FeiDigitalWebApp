@@ -30,14 +30,16 @@ export default function StudentCard(props: { key: string; student: Student }) {
       elevation={6}
       sx={{ backgroundColor: "#1E263B", color: "white", padding: "1rem" }}
     >
-      <Grid container>
-        <Grid item xs={9} sx={{ textAlign: "justify" }}>
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12} md={9} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
+            Nombre: {props.student.name}
+          </Typography>
           <Typography variant="body1">
-            Nombre: {props.student.name} <br />
             Correo electrónico: {props.student.email}
           </Typography>
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={12} md={3}>
           <Stack spacing={2} direction={"row"}>
             <Button
               variant="outlined"

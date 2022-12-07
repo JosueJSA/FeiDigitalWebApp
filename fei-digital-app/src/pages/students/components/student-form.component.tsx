@@ -164,23 +164,12 @@ export function StudentForm() {
             onChange={handleTypePassword}
           />
           {!LocalSession.getSession().token ? (
-            <Grid container sx={{ pr: "1rem" }}>
-              <Grid item xs={9}>
-                <CustomTextField
-                  sx={{ display: "flex" }}
-                  value={code}
-                  id="standard-code-input"
-                  label="Código de verificación"
-                  autoComplete="current-password"
-                  onChange={handleTypeCode}
-                />
-              </Grid>
-              <Grid item xs={3}>
+            <Grid container>
+              <Grid item xs={12} md={3}>
                 <Button
                   onClick={handleSendMail}
                   variant="contained"
                   sx={{
-                    ml: "1rem",
                     backgroundColor: "#31E1F7",
                     color: "black",
                     width: "100%",
@@ -191,6 +180,16 @@ export function StudentForm() {
                 >
                   Enviar
                 </Button>
+              </Grid>
+              <Grid item xs={12} md={9}>
+                <CustomTextField
+                  sx={{ display: "flex" }}
+                  value={code}
+                  id="standard-code-input"
+                  placeholder="Escribe el código de verificación"
+                  autoComplete="current-password"
+                  onChange={handleTypeCode}
+                />
               </Grid>
             </Grid>
           ) : (

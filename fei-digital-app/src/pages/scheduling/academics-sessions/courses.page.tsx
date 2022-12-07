@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Container } from "@mui/system";
 import { CourseForm } from "./components/course-form.component";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
@@ -129,8 +129,8 @@ export function Courses() {
   };
 
   return (
-    <div>
-      <Container maxWidth="md" sx={{ my: "6rem" }}>
+    <Fragment>
+      <Container maxWidth="md" sx={{ mb: "10rem" }}>
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, x: [-100, 30, 0] }}
@@ -139,7 +139,7 @@ export function Courses() {
         >
           <Typography
             sx={{ color: "white", textAlign: "left", mb: "1.5rem" }}
-            component="h2"
+            component="h1"
             variant="h4"
           >
             Cursos
@@ -205,6 +205,6 @@ export function Courses() {
         onClose={closeDeleteDialog}
       />
       <Toaster />
-    </div>
+    </Fragment>
   );
 }

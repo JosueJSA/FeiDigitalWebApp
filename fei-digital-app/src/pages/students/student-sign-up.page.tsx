@@ -22,18 +22,18 @@ export function StudentSignUp() {
   });
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "justify" }}>
+    <Container maxWidth="sm" sx={{ textAlign: "left", mb: "10rem" }}>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: 100 }}
+        animate={{ opacity: 1, y: 20 }}
         exit={{ opacity: 0 }}
       >
         <Card
           elevation={8}
           sx={{ backgroundColor: "#171D2C", padding: "1rem" }}
         >
-          <CardContent sx={{ padding: "2rem" }}>
-            <Typography variant="h4" sx={{ color: "white" }}>
+          <CardContent>
+            <Typography component="h1" variant="h4" sx={{ color: "white" }}>
               Registro de estudiante
             </Typography>
             <Typography

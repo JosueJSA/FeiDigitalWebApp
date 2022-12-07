@@ -31,8 +31,8 @@ export function ClassroomStatus() {
         display: session?.id ? "flex" : "none",
       }}
     >
-      <Grid container>
-        <Grid item xs={10} sx={{ textAlign: "justify" }}>
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12} md={10} sx={{ textAlign: "left" }}>
           {session ? (
             <Typography variant="body1">
               Nrc: {session.nrc} Nombre: {session.name}
@@ -46,7 +46,7 @@ export function ClassroomStatus() {
             <h1>loading...</h1>
           )}
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
               onClick={handleEndSession}

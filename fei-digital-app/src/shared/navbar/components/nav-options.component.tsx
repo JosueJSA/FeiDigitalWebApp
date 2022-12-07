@@ -63,7 +63,11 @@ export function NavOptions() {
             onClick={handleCloseNavMenu}
           >
             <Link style={{ textDecoration: "none" }} to={page.url}>
-              <Typography sx={{ color: "black" }} textAlign="center">
+              <Typography
+                component={"h2"}
+                sx={{ color: "black" }}
+                textAlign="center"
+              >
                 {page.name}
               </Typography>
             </Link>

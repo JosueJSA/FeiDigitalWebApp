@@ -26,13 +26,15 @@ export default function AcademicCard(props: {
       }}
     >
       <Grid container spacing={4}>
-        <Grid item xs={8} sx={{ textAlign: "left" }}>
+        <Grid item xs={12} md={8} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
+            Nombre: {props.academic.fullName}
+          </Typography>
           <Typography variant="body1">
-            Nombre: {props.academic.fullName} <br />
             Correo electrónico: {props.academic.email}
           </Typography>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} md={4}>
           <Stack spacing={2} direction={"row"}>
             <Button
               variant="outlined"

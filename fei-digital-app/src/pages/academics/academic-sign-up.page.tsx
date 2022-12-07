@@ -72,10 +72,10 @@ export function AcademicSignUp() {
   };
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "justify" }}>
+    <Container maxWidth="xs" sx={{ mb: "10rem", textAlign: "left" }}>
       <motion.div
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: 100 }}
+        animate={{ opacity: 1, y: 20 }}
         exit={{ opacity: 0 }}
       >
         <Card
@@ -83,7 +83,7 @@ export function AcademicSignUp() {
           sx={{ padding: "1rem", backgroundColor: "#171D2C" }}
         >
           <CardContent>
-            <Typography variant="h4" sx={{ color: "white" }}>
+            <Typography variant="h5" component="h1" sx={{ color: "white" }}>
               Registro de académico
             </Typography>
             <Typography

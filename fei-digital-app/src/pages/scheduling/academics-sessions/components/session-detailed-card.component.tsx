@@ -39,11 +39,12 @@ export function SessionDetailedCard(props: {
       elevation={6}
       sx={{ backgroundColor: "#1E263B", color: "white", padding: "1rem" }}
     >
-      <Grid container>
-        <Grid item xs={10} sx={{ textAlign: "justify" }}>
+      <Grid container rowSpacing={3}>
+        <Grid item xs={12} md={10} sx={{ textAlign: "left" }}>
+          <Typography component="h2" variant="body1">
+            Nrc: {props.session.nrc} <br /> Nombre: {props.session.name}
+          </Typography>
           <Typography variant="body1">
-            Nrc: {props.session.nrc} Nombre: {props.session.name}
-            <br />
             Fecha de clase:{" "}
             {new Date(props.session.classDate).toLocaleDateString()} <br />
             De:{" "}
@@ -56,7 +57,7 @@ export function SessionDetailedCard(props: {
             Aula de clase: {props.session.classroomName}
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
               onClick={handleWatchLocation}
