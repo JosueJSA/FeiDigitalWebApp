@@ -1,0 +1,25 @@
+{
+  "type": "mysql",
+  "host": "localhost",
+  "port": 3306,
+  "username": "root",
+  "password": "Halo444418.",
+  "database": "schedule",
+  "ssl": {
+    "rejectUnauthorized": false
+  },
+  "entities": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "autoLoadEntities": true,
+  "synchronize": false,
+  "logging": true,
+  "logger": "file"
+}
