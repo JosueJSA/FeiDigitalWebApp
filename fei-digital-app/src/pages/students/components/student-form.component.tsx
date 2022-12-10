@@ -138,118 +138,114 @@ export function StudentForm() {
   };
 
   return (
-    <div>
-      <form>
-        <Stack sx={{ color: "white" }} spacing={4} direction="column">
-          <CustomTextField
-            value={email}
-            id="email"
-            label="Correo electrónico"
-            variant="outlined"
-            onChange={handleTypeEmail}
-          />
-          <CustomTextField
-            value={name}
-            id="name"
-            label="Nombre"
-            variant="outlined"
-            onChange={handleTypeName}
-          />
-          <CustomTextField
-            value={password}
-            id="standard-password-input"
-            label="Contraseña"
-            type="password"
-            autoComplete="current-password"
-            onChange={handleTypePassword}
-          />
-          {!LocalSession.getSession().token ? (
-            <Grid container>
-              <Grid item xs={12} md={3}>
-                <Button
-                  onClick={handleSendMail}
-                  variant="contained"
-                  sx={{
-                    backgroundColor: "#31E1F7",
-                    color: "black",
-                    width: "100%",
-                    height: "100%",
-                    "&:hover": { backgroundColor: "#D800A6", color: "white" },
-                  }}
-                  startIcon={<ForwardToInboxIcon />}
-                >
-                  Enviar
-                </Button>
-              </Grid>
-              <Grid item xs={12} md={9}>
-                <CustomTextField
-                  sx={{ display: "flex" }}
-                  value={code}
-                  id="standard-code-input"
-                  placeholder="Escribe el código de verificación"
-                  autoComplete="current-password"
-                  onChange={handleTypeCode}
-                />
-              </Grid>
+    <form>
+      <Stack sx={{ color: "white" }} spacing={4} direction="column">
+        <CustomTextField
+          value={email}
+          id="email"
+          label="Correo electrónico"
+          variant="outlined"
+          onChange={handleTypeEmail}
+        />
+        <CustomTextField
+          value={name}
+          id="name"
+          label="Nombre"
+          variant="outlined"
+          onChange={handleTypeName}
+        />
+        <CustomTextField
+          value={password}
+          id="standard-password-input"
+          label="Contraseña"
+          type="password"
+          autoComplete="current-password"
+          onChange={handleTypePassword}
+        />
+        {!LocalSession.getSession().token ? (
+          <Grid container>
+            <Grid item xs={12} md={3}>
+              <Button
+                onClick={handleSendMail}
+                variant="contained"
+                sx={{
+                  backgroundColor: "#31E1F7",
+                  color: "black",
+                  width: "100%",
+                  height: "100%",
+                  "&:hover": { backgroundColor: "#D800A6", color: "white" },
+                }}
+                startIcon={<ForwardToInboxIcon />}
+              >
+                Enviar
+              </Button>
             </Grid>
-          ) : (
-            ""
-          )}
-          <FormControl
-            sx={{
-              display:
-                LocalSession.getSession().type === "Académico"
-                  ? "flex"
-                  : "none",
-            }}
-            fullWidth
+            <Grid item xs={12} md={9}>
+              <CustomTextField
+                sx={{ display: "flex" }}
+                value={code}
+                id="standard-code-input"
+                placeholder="Escribe el código de verificación"
+                autoComplete="current-password"
+                onChange={handleTypeCode}
+              />
+            </Grid>
+          </Grid>
+        ) : (
+          ""
+        )}
+        <FormControl
+          sx={{
+            display:
+              LocalSession.getSession().type === "Académico" ? "flex" : "none",
+          }}
+          fullWidth
+        >
+          <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
+            Estado en el sistema
+          </InputLabel>
+          <Select
+            sx={{ color: "white" }}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="Estado en el sistema"
+            value={status}
+            onChange={handleSetStatus}
           >
-            <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
-              Estado en el sistema
-            </InputLabel>
-            <Select
-              sx={{ color: "white" }}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              label="Estado en el sistema"
-              value={status}
-              onChange={handleSetStatus}
-            >
-              <MenuItem value={"Disponible"}>Disponible</MenuItem>
-              <MenuItem value={"Bloqueado"}>Bloqueado</MenuItem>
-            </Select>
-          </FormControl>
-        </Stack>
-        <div style={{ marginTop: "3rem" }}>
-          {LocalSession.getSession().token ? (
-            <Button
-              onClick={handleUpdateStudent}
-              variant="contained"
-              sx={{
-                backgroundColor: "#31E1F7",
-                color: "black",
-                width: "100%",
-                "&:hover": { backgroundColor: "#D800A6", color: "white" },
-              }}
-            >
-              Guardar cambios
-            </Button>
-          ) : (
-            <Button
-              onClick={handleAddStudent}
-              variant="contained"
-              sx={{
-                backgroundColor: "#31E1F7",
-                color: "black",
-                width: "100%",
-                "&:hover": { backgroundColor: "#D800A6", color: "white" },
-              }}
-            >
-              Registrarme
-            </Button>
-          )}
-        </div>
-      </form>
-    </div>
+            <MenuItem value={"Disponible"}>Disponible</MenuItem>
+            <MenuItem value={"Bloqueado"}>Bloqueado</MenuItem>
+          </Select>
+        </FormControl>
+      </Stack>
+      <div style={{ marginTop: "3rem" }}>
+        {LocalSession.getSession().token ? (
+          <Button
+            onClick={handleUpdateStudent}
+            variant="contained"
+            sx={{
+              backgroundColor: "#31E1F7",
+              color: "black",
+              width: "100%",
+              "&:hover": { backgroundColor: "#D800A6", color: "white" },
+            }}
+          >
+            Guardar cambios
+          </Button>
+        ) : (
+          <Button
+            onClick={handleAddStudent}
+            variant="contained"
+            sx={{
+              backgroundColor: "#31E1F7",
+              color: "black",
+              width: "100%",
+              "&:hover": { backgroundColor: "#D800A6", color: "white" },
+            }}
+          >
+            Registrarme
+          </Button>
+        )}
+      </div>
+    </form>
   );
 }

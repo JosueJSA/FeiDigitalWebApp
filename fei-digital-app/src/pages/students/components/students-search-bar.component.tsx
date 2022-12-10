@@ -71,58 +71,60 @@ export default function StudentsSearchBar() {
   };
 
   return (
-    <Card elevation={6} sx={{ padding: "1rem", backgroundColor: "#171D2C" }}>
-      <Grid container columnSpacing={3} rowSpacing={3}>
-        <Grid item xs={12} md={6}>
-          <CustomTextField
-            autoFocus
-            sx={{ display: "flex" }}
-            id="outlined-basic"
-            value={searchValue}
-            label="Búsqueda"
-            variant="outlined"
-            onChange={handleTypeSearch}
-          />
+    <form>
+      <Card elevation={6} sx={{ padding: "1rem", backgroundColor: "#171D2C" }}>
+        <Grid container columnSpacing={3} rowSpacing={3}>
+          <Grid item xs={12} md={6}>
+            <CustomTextField
+              autoFocus
+              sx={{ display: "flex" }}
+              id="outlined-basic"
+              value={searchValue}
+              label="Búsqueda"
+              variant="outlined"
+              onChange={handleTypeSearch}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Box sx={{ minWidth: 120 }}>
+              <FormControl fullWidth>
+                <InputLabel
+                  sx={{ color: "#00B8DD" }}
+                  id="demo-simple-select-label"
+                >
+                  Criterio
+                </InputLabel>
+                <Select
+                  sx={{ color: "white" }}
+                  labelId="demo-simple-select-label"
+                  id="demo-simple-select"
+                  value={searchFilter}
+                  label="Criterio"
+                  onChange={handleFilterSelection}
+                >
+                  <MenuItem value={"email"}>Correo electrónico</MenuItem>
+                  <MenuItem value={"name"}>Nombre</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Grid>
+          <Grid item md={2} xs={12}>
+            <Button
+              sx={{
+                height: "100%",
+                width: "100%",
+                backgroundColor: "#00B8DD",
+                color: "black",
+              }}
+              onClick={handleSearch}
+              variant="contained"
+              startIcon={<SearchIcon />}
+            >
+              Buscar
+            </Button>
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={4}>
-          <Box sx={{ minWidth: 120 }}>
-            <FormControl fullWidth>
-              <InputLabel
-                sx={{ color: "#00B8DD" }}
-                id="demo-simple-select-label"
-              >
-                Criterio
-              </InputLabel>
-              <Select
-                sx={{ color: "white" }}
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={searchFilter}
-                label="Criterio"
-                onChange={handleFilterSelection}
-              >
-                <MenuItem value={"email"}>Correo electrónico</MenuItem>
-                <MenuItem value={"name"}>Nombre</MenuItem>
-              </Select>
-            </FormControl>
-          </Box>
-        </Grid>
-        <Grid item md={2} xs={12}>
-          <Button
-            sx={{
-              height: "100%",
-              width: "100%",
-              backgroundColor: "#00B8DD",
-              color: "black",
-            }}
-            onClick={handleSearch}
-            variant="contained"
-            startIcon={<SearchIcon />}
-          >
-            Buscar
-          </Button>
-        </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </form>
   );
 }
