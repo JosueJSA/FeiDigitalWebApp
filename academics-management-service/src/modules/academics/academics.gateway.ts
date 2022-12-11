@@ -222,9 +222,11 @@ async function validateAcademicEditDto(
   id: string,
   object: AcademicPersonalEditDto,
 ) {
-  if (!id)
+  if (id === undefined || id === null || id === '')
+    throw new WsException(['Se requiere el identificador del académico']);
+  if (id.length > 50)
     throw new WsException([
-      'Se requiere el dentificador del académico a editar',
+      'El identificador del académico no puede ser mayor a 50 caracteres',
     ]);
   const validations = await validate(
     Object.assign(new AcademicPersonalEditDto(), object),

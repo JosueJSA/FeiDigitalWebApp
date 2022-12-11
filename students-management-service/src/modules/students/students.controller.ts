@@ -7,7 +7,6 @@ import {
   Param,
   Patch,
   Post,
-  Put,
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger/dist';
@@ -76,7 +75,7 @@ export class StudentsController {
    * @returns full student with updated data
    */
   @UseGuards(JwtAuthGuard)
-  @Put(':id')
+  @Patch(':id')
   async updateStudent(
     @Param('id') id: string,
     @Body() student: StudentEditDto,

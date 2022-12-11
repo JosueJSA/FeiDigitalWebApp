@@ -277,7 +277,10 @@ export class SessionsGateway {
 
   verifyToken(socket: Socket, onlyAcademic: boolean) {
     try {
-      this.jwtService.verify(socket.handshake.auth.token, {
+      const token = socket.handshake.headers.token
+        ? socket.handshake.headers.token
+        : socket.handshake.auth.token;
+      this.jwtService.verify(token, {
         secret: jwtConstants.secret,
         ignoreExpiration: false,
       });
@@ -288,7 +291,7 @@ export class SessionsGateway {
 }
 
 async function valdiateClassSessionEditDto(id: string, object: SessionDto) {
-  if (id.length === 0)
+  if (id === undefined || id === null || id === '')
     throw new WsException(['Se requiere el identificador de la calse']);
   if (id.length > 100)
     throw new WsException([
@@ -344,7 +347,7 @@ function validateNrc(nrc: string) {
 }
 
 function validateStartRequest(idClass: string) {
-  if (idClass.length === 0)
+  if (idClass === undefined || idClass === null || idClass === '')
     throw new WsException(['Se requiere el identificador de la clase']);
   if (idClass.length > 100)
     throw new WsException([
@@ -353,7 +356,7 @@ function validateStartRequest(idClass: string) {
 }
 
 function validateEndRequest(idClass: string) {
-  if (idClass.length === 0)
+  if (idClass === undefined || idClass === null || idClass === '')
     throw new WsException(['Se requiere el identificador de la clase']);
   if (idClass.length > 100)
     throw new WsException([

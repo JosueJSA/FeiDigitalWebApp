@@ -1,5 +1,6 @@
 import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { join } from 'path';
 import { Account, Student } from 'src/models';
 
 function typeOrmModuleOptions(): TypeOrmModuleOptions {

@@ -232,7 +232,10 @@ export class CoursesGateway {
 
   verifyToken(socket: Socket, onlyAcademic: boolean) {
     try {
-      this.jwtService.verify(socket.handshake.auth.token, {
+      const token = socket.handshake.headers.token
+        ? socket.handshake.headers.token
+        : socket.handshake.auth.token;
+      this.jwtService.verify(token, {
         secret: jwtConstants.secret,
         ignoreExpiration: false,
       });
@@ -243,6 +246,11 @@ export class CoursesGateway {
 }
 
 function validateFollower(idStudent: string, nrcCourse: string) {
+  if (
+    (idStudent === undefined || idStudent === null || idStudent === '') &&
+    (nrcCourse === undefined || nrcCourse === null || nrcCourse === '')
+  )
+    throw new WsException(['Se requieren datos del estudainte y del curso']);
   if (idStudent.length === 0)
     throw new WsException(['Se requiere el identificador del estudiante']);
   if (nrcCourse.length === 0)
@@ -295,7 +303,8 @@ function validateFollow(idStudent: string, nrcCourse: string) {
 }
 
 function verifyNrcCourse(nrc: string) {
-  if (nrc.length === 0) throw new WsException(['Se requiere el NRC del curso']);
+  if (nrc === undefined || nrc === null || nrc === '')
+    throw new WsException(['Se requiere el NRC del curso']);
   if (nrc.length > 50)
     throw new WsException(['El Nrc no debe ser mayor a 50 caracteres']);
 }
@@ -306,7 +315,10 @@ async function validateCourseDto(object: CourseDto) {
 }
 
 async function validateCourseFilterDto(object: CourseFilterDto) {
-  if (object.nrc.length === 0 && object.name.length === 0)
+  if (
+    (object.nrc === undefined || object.nrc === null || object.nrc === '') &&
+    (object.name === undefined || object.name === null || object.name === '')
+  )
     throw new WsException(['No puedes buscar sin un criterio']);
   if (object.nrc.length > 50)
     throw new WsException(['El Nrc no puede contener más de 50 caracteres']);
@@ -321,7 +333,7 @@ async function validateCourseFilterDto(object: CourseFilterDto) {
 }
 
 async function validateCourseEditDto(nrc: string, object: CourseEditDto) {
-  if (nrc.length === 0)
+  if (nrc === undefined || nrc === null || nrc === '')
     throw new WsException(['Se requiere el NRC del curso a editar']);
   if (nrc.length > 50)
     throw new WsException(['El Nrc no puede superar los 50 caracteres']);
