@@ -156,7 +156,7 @@ export function StudentForm() {
         />
         <CustomTextField
           value={password}
-          id="standard-password-input"
+          id="password"
           label="Contraseña"
           type="password"
           autoComplete="current-password"
@@ -207,7 +207,7 @@ export function StudentForm() {
           <Select
             sx={{ color: "white" }}
             labelId="demo-simple-select-label"
-            id="demo-simple-select"
+            id="status"
             label="Estado en el sistema"
             value={status}
             onChange={handleSetStatus}
@@ -220,6 +220,7 @@ export function StudentForm() {
       <div style={{ marginTop: "3rem" }}>
         {LocalSession.getSession().token ? (
           <Button
+            id="updateButton"
             onClick={handleUpdateStudent}
             variant="contained"
             sx={{
@@ -233,6 +234,7 @@ export function StudentForm() {
           </Button>
         ) : (
           <Button
+            id="addButton"
             onClick={handleAddStudent}
             variant="contained"
             sx={{

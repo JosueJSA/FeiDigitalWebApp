@@ -147,7 +147,7 @@ export function AcademicForm() {
             onChange={handleTypeName}
           />
           <CustomTextField
-            id="standard-password-input"
+            id="password"
             value={password}
             label="Contraseña"
             type="password"
@@ -161,7 +161,7 @@ export function AcademicForm() {
             <Select
               sx={{ color: "white" }}
               labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              id="feiposition"
               label="Cargo en la FEI"
               value={position}
               onChange={handlePositionSelection}
@@ -185,7 +185,7 @@ export function AcademicForm() {
             <Select
               sx={{ color: "white" }}
               labelId="status-label"
-              id="status-simple-select"
+              id="status-select"
               label="Estado en la aplicación"
               value={status}
               onChange={handleStatusSelection}
@@ -199,6 +199,7 @@ export function AcademicForm() {
             <Grid container>
               <Grid item md={4} xs={12}>
                 <Button
+                  id="sendButton"
                   onClick={handleSendMail}
                   variant="contained"
                   sx={{
@@ -228,6 +229,7 @@ export function AcademicForm() {
           )}
           {localStorage.getItem("access_token") ? (
             <Button
+              id="saveButton"
               variant="contained"
               onClick={handleUpdateAcademic}
               sx={{
@@ -240,6 +242,7 @@ export function AcademicForm() {
             </Button>
           ) : (
             <Button
+              id="addButton"
               variant="contained"
               onClick={handleAddAcademic}
               sx={{

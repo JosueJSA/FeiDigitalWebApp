@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Button, Card, Grid, Stack, Typography } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import EditIcon from "@mui/icons-material/Edit";
@@ -91,6 +84,7 @@ export function ClassSessionCard(props: {
         <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
+              id={props.session.id + "watch"}
               variant="outlined"
               aria-label="Ver clases"
               sx={{ color: "white" }}
@@ -100,6 +94,7 @@ export function ClassSessionCard(props: {
               Ver
             </Button>
             <Button
+              id={props.session.id + "update"}
               variant="outlined"
               onClick={handleUpdateClassSession}
               aria-label="Editar clase"
@@ -109,6 +104,7 @@ export function ClassSessionCard(props: {
               Editar
             </Button>
             <Button
+              id={props.session.id + "delete"}
               variant="outlined"
               color="error"
               onClick={handleDeleteClassSession}

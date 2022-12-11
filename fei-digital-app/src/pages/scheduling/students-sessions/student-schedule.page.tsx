@@ -154,7 +154,11 @@ export function StudentSchedule() {
               value={date}
               onChange={handleDateSelection}
               renderInput={(params) => (
-                <CustomTextField sx={{ display: "flex" }} {...params} />
+                <CustomTextField
+                  id="calendar"
+                  sx={{ display: "flex" }}
+                  {...params}
+                />
               )}
             />
           </Card>

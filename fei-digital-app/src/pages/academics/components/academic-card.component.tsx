@@ -37,6 +37,7 @@ export default function AcademicCard(props: {
         <Grid item xs={12} md={4}>
           <Stack spacing={2} direction={"row"}>
             <Button
+              id={props.academic.id + "watch"}
               variant="outlined"
               startIcon={<RemoveRedEyeIcon />}
               onClick={handleRequest}

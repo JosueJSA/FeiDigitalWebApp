@@ -82,6 +82,7 @@ export function CoursesSearchBar() {
         </Grid>
         <Grid item xs={12} md={2}>
           <Button
+            id="searchButton"
             sx={{
               backgroundColor: "#00B8DD",
               color: "black",

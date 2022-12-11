@@ -70,7 +70,11 @@ export function NavProfile() {
           {username}
         </Typography>
         <Tooltip title="Ver opciones">
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <IconButton
+            id="profileOptionsButton"
+            onClick={handleOpenUserMenu}
+            sx={{ p: 0 }}
+          >
             <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
           </IconButton>
         </Tooltip>
@@ -92,7 +96,11 @@ export function NavProfile() {
         onClose={handleCloseUserMenu}
       >
         {Object.keys(settings).map((setting) => (
-          <MenuItem key={setting} onClick={() => handleCloseUserMenu(setting)}>
+          <MenuItem
+            id={settings[setting]}
+            key={setting}
+            onClick={() => handleCloseUserMenu(setting)}
+          >
             <Typography
               component="h2"
               sx={{ color: "black" }}

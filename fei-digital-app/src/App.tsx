@@ -66,7 +66,7 @@ function App() {
         />
         <Route path="/students/sign-up/" element={<StudentSignUp />} />
         <Route path="/academics/sign-up/" element={<AcademicSignUp />} />
-        <Route path="*" element={<Navigate to="/home/" replace />} />
+        <Route path="*" element={<Navigate to="/login/" replace />} />
       </Routes>
     </div>
   );

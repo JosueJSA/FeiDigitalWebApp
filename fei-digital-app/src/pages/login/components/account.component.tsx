@@ -70,7 +70,7 @@ export function Account() {
           onChange={handleTypeEmail}
         />
         <CustomTextField
-          id="standard-password-input"
+          id="password"
           value={password}
           label="Contraseña"
           type="password"
@@ -82,6 +82,7 @@ export function Account() {
           whileHover={{ scale: 1.1 }}
         >
           <Button
+            id="loginButton"
             variant="contained"
             onClick={handleSignIn}
             sx={{

@@ -54,6 +54,7 @@ export function SessionStudentDetailedCard(props: {
         <Grid item xs={12} md={4}>
           <Stack spacing={1} direction={"column"}>
             <Button
+              id={props.session.id}
               onClick={handleClickWatch}
               variant="outlined"
               startIcon={<RemoveRedEyeIcon />}

@@ -49,6 +49,7 @@ export function CourseCard(props: {
         <Grid item xs={12} md={4}>
           <Stack spacing={2} direction={"row"}>
             <Button
+              id={props.course.nrc + "watch"}
               onClick={handleConsultCourse}
               aria-label="Ver clases"
               variant="outlined"
@@ -57,6 +58,7 @@ export function CourseCard(props: {
               <RemoveRedEyeIcon />
             </Button>
             <Button
+              id={props.course.nrc + "update"}
               onClick={handleUpdateDialog}
               aria-label="Editar curso"
               variant="outlined"
@@ -65,6 +67,7 @@ export function CourseCard(props: {
               <EditIcon />
             </Button>
             <Button
+              id={props.course.nrc + "delete"}
               onClick={handleDeleteDialog}
               aria-label="Eliminar curso"
               variant="outlined"

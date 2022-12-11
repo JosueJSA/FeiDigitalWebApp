@@ -18,6 +18,7 @@ export function NavLink(props: { key: string; page: NavOption }) {
       arrow
     >
       <Button
+        id={props.page.id}
         onClick={handleOnClick}
         aria-label={props.page.name}
         aria-required="true"

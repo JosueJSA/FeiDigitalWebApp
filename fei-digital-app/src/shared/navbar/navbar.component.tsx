@@ -21,7 +21,6 @@ import SchoolIcon from "@mui/icons-material/School";
 import ClassIcon from "@mui/icons-material/Class";
 import PeopleIcon from "@mui/icons-material/People";
 import BookmarkIcon from "@mui/icons-material/Bookmark";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import DnsIcon from "@mui/icons-material/Dns";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import { NavOptions } from "./components/nav-options.component";
@@ -32,7 +31,6 @@ import { NavLink } from "./components/nav-link.component";
 import { useAppSelector } from "../../app/hooks";
 import { selectNavbar } from "./navbarSlice";
 import { useNavigate } from "react-router-dom";
-import { Notification } from "./components/notification.component";
 import { LocalSession } from "../session";
 
 const studentPages: NavOption[] = [
@@ -140,6 +138,7 @@ export function Navbar() {
           )}
           {getPages().length !== 0 ? (
             <Button
+              id="optionsButton"
               onClick={handleSearchCourses}
               sx={{ borderColor: "#00B8DD", color: "#00B8DD", mr: "1rem" }}
               variant="outlined"

@@ -166,7 +166,11 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 value={date}
                 onChange={handleDateSelection}
                 renderInput={(params) => (
-                  <CustomTextField sx={{ display: "flex" }} {...params} />
+                  <CustomTextField
+                    id="startDate"
+                    sx={{ display: "flex" }}
+                    {...params}
+                  />
                 )}
               />
             </Grid>
@@ -175,7 +179,9 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 label="Hora de inicio"
                 value={initialTime}
                 onChange={handleInitialTimeSelection}
-                renderInput={(params) => <CustomTextField {...params} />}
+                renderInput={(params) => (
+                  <CustomTextField id="initTime" {...params} />
+                )}
               />
             </Grid>
             <Grid item xs={6}>
@@ -183,11 +189,14 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 label="Hora de fin"
                 value={endTime}
                 onChange={handleEndTimeSelection}
-                renderInput={(params) => <CustomTextField {...params} />}
+                renderInput={(params) => (
+                  <CustomTextField id="endTime" {...params} />
+                )}
               />
             </Grid>
             <Grid item xs={6}>
               <Button
+                id="location"
                 color="info"
                 onClick={toggleDrawer(true)}
                 sx={{ display: "flex", minWidth: "maxWidth" }}
@@ -214,6 +223,7 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                   onChange={handleLimitDateSelection}
                   renderInput={(params) => (
                     <CustomTextField
+                      id="limitDate"
                       sx={{ display: checked ? "flex" : "none" }}
                       {...params}
                     />
@@ -224,6 +234,7 @@ export function ClassSessionForm(props: { key: string; type: string }) {
             <Grid item xs={12} sx={{ display: "flex", my: "1rem" }}>
               {props.type === "update" ? (
                 <Button
+                  id="saveButton"
                   variant="contained"
                   onClick={handleUpdateSession}
                   sx={{
@@ -237,6 +248,7 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 </Button>
               ) : (
                 <Button
+                  id="addButton"
                   variant="contained"
                   onClick={handleAddClassSession}
                   sx={{

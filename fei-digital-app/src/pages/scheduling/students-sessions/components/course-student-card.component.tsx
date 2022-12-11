@@ -58,6 +58,7 @@ export function CourseStudentCard(props: {
         <Grid item xs={12} md={4}>
           <Stack spacing={0} direction={"row"}>
             <Button
+              id={props.course.nrc + "follow"}
               onClick={handleFollowCourse}
               sx={{
                 display: props.option === "follow" ? "felx" : "none",
@@ -73,6 +74,7 @@ export function CourseStudentCard(props: {
               Seguir
             </Button>
             <Button
+              id={props.course.nrc + "unfollow"}
               onClick={handleUnfollowCourse}
               sx={{
                 display: props.option !== "follow" ? "felx" : "none",

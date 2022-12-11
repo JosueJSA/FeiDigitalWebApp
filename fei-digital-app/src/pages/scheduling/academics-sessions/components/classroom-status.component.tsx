@@ -7,7 +7,6 @@ import { AcademicSessionsSocket } from "../academic-sessions-socket.manager";
 import { selectAcademicsSchedule } from "../academicsScheduleSlice";
 
 export function ClassroomStatus() {
-  const [messages, setMessages] = useState(0);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const session = useAppSelector(selectAcademicsSchedule).sessionDetailed;
@@ -49,6 +48,7 @@ export function ClassroomStatus() {
         <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
+              id={session.id + "classroom"}
               onClick={handleEndSession}
               color="error"
               variant="contained"

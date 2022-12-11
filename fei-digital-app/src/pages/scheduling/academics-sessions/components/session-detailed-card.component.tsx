@@ -12,7 +12,6 @@ export function SessionDetailedCard(props: {
   key: string;
   session: SessionDetailed;
 }) {
-  const [messages, setMessages] = useState(0);
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -60,6 +59,7 @@ export function SessionDetailedCard(props: {
         <Grid item xs={12} md={2}>
           <Stack spacing={1} direction={"column"}>
             <Button
+              id={props.session.id + "watch"}
               onClick={handleWatchLocation}
               color="info"
               variant="outlined"
@@ -67,6 +67,7 @@ export function SessionDetailedCard(props: {
               Ver clase
             </Button>
             <Button
+              id={props.session.id + "start"}
               onClick={handleStartClass}
               color="success"
               variant="outlined"

@@ -110,6 +110,7 @@ export default function StudentsSearchBar() {
           </Grid>
           <Grid item md={2} xs={12}>
             <Button
+              id="searchButton"
               sx={{
                 height: "100%",
                 width: "100%",

@@ -42,6 +42,7 @@ export default function StudentCard(props: { key: string; student: Student }) {
         <Grid item xs={12} md={3}>
           <Stack spacing={2} direction={"row"}>
             <Button
+              id={props.student.id + "watch"}
               variant="outlined"
               startIcon={<RemoveRedEyeIcon />}
               onClick={handleRequest}
@@ -57,6 +58,7 @@ export default function StudentCard(props: { key: string; student: Student }) {
               Ver
             </Button>
             <Button
+              id={props.student.id + "update"}
               variant="outlined"
               startIcon={<EditIcon />}
               onClick={handleEdit}

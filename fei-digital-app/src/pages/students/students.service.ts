@@ -67,7 +67,7 @@ export async function updateStudent(
   auth: string
 ): Promise<Student | any> {
   try {
-    const response = await axios.put(`${BASE_URL}${id}`, student, {
+    const response = await axios.patch(`${BASE_URL}${id}`, student, {
       headers: { Authorization: `Bearer ${auth}` },
     });
     return response.data;

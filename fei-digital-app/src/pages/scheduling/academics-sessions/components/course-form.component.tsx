@@ -139,6 +139,7 @@ export function CourseForm(props: {
           </Stack>
           {props.type && props.type === "update" ? (
             <Button
+              id="saveButton"
               variant="contained"
               onClick={handleClickUpdateCourse}
               sx={{
@@ -157,6 +158,7 @@ export function CourseForm(props: {
             </Button>
           ) : (
             <Button
+              id="addButton"
               variant="contained"
               onClick={handleClickAddCourse}
               sx={{
