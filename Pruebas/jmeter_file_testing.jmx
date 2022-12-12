@@ -1,0 +1,1015 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.5">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Students flow" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration">0</stringProp>
+        <stringProp name="ThreadGroup.delay">0</stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="jp@gc - Chrome Driver Config" enabled="true">
+          <boolProp name="WebDriverConfig.acceptinsecurecerts">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <stringProp name="WebDriverConfig.driver_path">C:\Users\josue\OneDrive\Escritorio\apache-jmeter-5.5\chromedriver.exe</stringProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <boolProp name="WebDriverConfig.headless">false</boolProp>
+          <stringProp name="ChromeDriverConfig.additional_args"></stringProp>
+          <stringProp name="ChromeDriverConfig.binary_path"></stringProp>
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request student profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+WDS.browser.findElement(By.id(&quot;/students/student/8029a24b-05e5-40fb-bd38-cfb3bdf8230f&quot;)).click();
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Update student profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+WDS.browser.findElement(By.id(&quot;/students/student-edition/8029a24b-05e5-40fb-bd38-cfb3bdf8230f&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;updateButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search student by email" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search student by name" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request student by academic" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Update student by academic" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;8029a24b-05e5-40fb-bd38-cfb3bdf8230fupdate&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;updateButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to request student profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;anyone@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+if(WDS.browser.findElements(By.id(&quot;profileOptionsButton&quot;)).size() &lt;= 0){
+	WDS.sampleResult.setSuccessful(true);
+}
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to update student profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+WDS.browser.findElement(By.id(&quot;/students/student-edition/8029a24b-05e5-40fb-bd38-cfb3bdf8230f&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;name&quot;)).sendKeys( new String[] {&quot;    &quot;});
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralaj  sa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue  4444&quot;});
+WDS.browser.findElement(By.id(&quot;updateButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to search student by empty" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to request student by academic" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa0  90@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue  4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to update student by academic" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;students&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;8029a24b-05e5-40fb-bd38-cfb3bdf8230fupdate&quot;)).click();
+java.lang.Thread.sleep(1000);
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;       &quot;});
+WDS.browser.findElement(By.id(&quot;updateButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Academics flow" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="jp@gc - Chrome Driver Config" enabled="true">
+          <boolProp name="WebDriverConfig.acceptinsecurecerts">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <stringProp name="WebDriverConfig.driver_path">C:\Users\josue\OneDrive\Escritorio\apache-jmeter-5.5\chromedriver.exe</stringProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <boolProp name="WebDriverConfig.headless">false</boolProp>
+          <stringProp name="ChromeDriverConfig.additional_args"></stringProp>
+          <stringProp name="ChromeDriverConfig.binary_path"></stringProp>
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request academic profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+WDS.browser.findElement(By.id(&quot;/academics/academic/2fdbfcab-a76c-45a0-ba70-381c8c62f5cf&quot;)).click();
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Update academic profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+WDS.browser.findElement(By.id(&quot;/academics/academic-edition/2fdbfcab-a76c-45a0-ba70-381c8c62f5cf&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;saveButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search academic by email" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;academics&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Search academic by name" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;academics&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.cssSelector(&quot;input.MuiSelect-nativeInput.css-1k3x8v3&quot;)).sendKeys( new String[] {&quot;fullName&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request academic by student" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;academics&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;2fdbfcab-a76c-45a0-ba70-381c8c62f5cfwatch&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to request academic profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josues  a090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4  444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+if(WDS.browser.findElements(By.id(&quot;profileOptionsButton&quot;)).size() &lt;= 0){
+	WDS.sampleResult.setSuccessful(true);
+}
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to update academic profile" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;profileOptionsButton&quot;)).click();
+if(WDS.browser.findElements(By.id(&quot;/academics/academic-edition/2fdbfcab-a76c-45a0-ba70-381c8c62f5cf&quot;)).size() &lt;= 0){
+	WDS.sampleResult.setSuccessful(true);
+}
+
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to search academic by email" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;academics&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Schedule of academics flow" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig guiclass="com.googlecode.jmeter.plugins.webdriver.config.gui.ChromeDriverConfigGui" testclass="com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig" testname="jp@gc - Chrome Driver Config" enabled="true">
+          <boolProp name="WebDriverConfig.acceptinsecurecerts">false</boolProp>
+          <boolProp name="WebDriverConfig.reset_per_iteration">false</boolProp>
+          <stringProp name="WebDriverConfig.driver_path">C:\Users\josue\OneDrive\Escritorio\apache-jmeter-5.5\chromedriver.exe</stringProp>
+          <boolProp name="WebDriverConfig.dev_mode">false</boolProp>
+          <boolProp name="WebDriverConfig.maximize_browser">true</boolProp>
+          <boolProp name="WebDriverConfig.headless">false</boolProp>
+          <stringProp name="ChromeDriverConfig.additional_args"></stringProp>
+          <stringProp name="ChromeDriverConfig.binary_path"></stringProp>
+          <stringProp name="WebDriverConfig.proxy_type">SYSTEM</stringProp>
+          <stringProp name="WebDriverConfig.proxy_pac_url"></stringProp>
+          <stringProp name="WebDriverConfig.http_host"></stringProp>
+          <intProp name="WebDriverConfig.http_port">8080</intProp>
+          <boolProp name="WebDriverConfig.use_http_for_all_protocols">true</boolProp>
+          <stringProp name="WebDriverConfig.https_host"></stringProp>
+          <intProp name="WebDriverConfig.https_port">8080</intProp>
+          <stringProp name="WebDriverConfig.ftp_host"></stringProp>
+          <intProp name="WebDriverConfig.ftp_port">8080</intProp>
+          <stringProp name="WebDriverConfig.socks_host"></stringProp>
+          <intProp name="WebDriverConfig.socks_port">8080</intProp>
+          <stringProp name="WebDriverConfig.no_proxy">localhost</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.config.ChromeDriverConfig>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request courses" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Edit course" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;777update&quot;)).click();
+java.lang.Thread.sleep(1000);
+WDS.browser.findElement(By.id(&quot;saveButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request sessions" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;777watch&quot;)).click();
+java.lang.Thread.sleep(1000);
+
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Watch sessions" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;777watch&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;6ddcce44-3527-4a23-8624-2fa70f2a39eewatch&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Edit sessions" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;777watch&quot;)).click();
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;6ddcce44-3527-4a23-8624-2fa70f2a39eeupdate&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;saveButton&quot;)).click();
+java.lang.Thread.sleep(1000);
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Follow course" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;optionsButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request schedule" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;nocralajsa@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;schedule&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;calendar&quot;)).sendKeys( new String[] {&quot;12/17/2022&quot;});
+java.lang.Thread.sleep(2000);
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Request schedule by academic" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;schedule&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;calendar&quot;)).sendKeys( new String[] {&quot;12/10/2022&quot;});
+java.lang.Thread.sleep(2000);
+WDS.sampleResult.sampleEnd();
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to follow own course" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;optionsButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.browser.findElement(By.id(&quot;outlined-basic&quot;)).sendKeys( new String[] {&quot;a&quot;});
+WDS.browser.findElement(By.id(&quot;searchButton&quot;)).click();
+java.lang.Thread.sleep(2000);
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+        <com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler guiclass="com.googlecode.jmeter.plugins.webdriver.sampler.gui.WebDriverSamplerGui" testclass="com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler" testname="Try to create course" enabled="true">
+          <stringProp name="WebDriverSampler.script">import org.openqa.selenium.*;
+
+WDS.sampleResult.sampleStart();
+WDS.browser.get(&quot;https://feidigital.store/login&quot;);
+
+WDS.browser.findElement(By.cssSelector(&quot;input.PrivateSwitchBase-input.MuiSwitch-input.css-1m9pwf3&quot;)).click();
+WDS.browser.findElement(By.id(&quot;email&quot;)).sendKeys( new String[] {&quot;josuesa090@gmail.com&quot;});
+WDS.browser.findElement(By.id(&quot;password&quot;)).sendKeys( new String[] {&quot;josue4444&quot;});
+WDS.browser.findElement(By.id(&quot;loginButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.id(&quot;courses&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.browser.findElement(By.cssSelector(&quot;[aria-label=add]&quot;)).click();
+java.lang.Thread.sleep(1000);
+WDS.browser.findElement(By.id(&quot;name&quot;)).sendKeys( new String[] {&quot;Diseño de interfaces graficas super pro&quot;});
+WDS.browser.findElement(By.id(&quot;nrc&quot;)).sendKeys( new String[] {&quot;777&quot;});
+WDS.browser.findElement(By.id(&quot;addButton&quot;)).click();
+
+java.lang.Thread.sleep(2000);
+
+WDS.sampleResult.sampleEnd();
+
+</stringProp>
+          <stringProp name="WebDriverSampler.parameters"></stringProp>
+          <stringProp name="WebDriverSampler.language">java</stringProp>
+        </com.googlecode.jmeter.plugins.webdriver.sampler.WebDriverSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="Global result tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="GraphVisualizer" testclass="ResultCollector" testname="Graph Results" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>true</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+            <sentBytes>true</sentBytes>
+            <url>true</url>
+            <threadCounts>true</threadCounts>
+            <idleTime>true</idleTime>
+            <connectTime>true</connectTime>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
