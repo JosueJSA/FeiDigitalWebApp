@@ -18,12 +18,17 @@ import { CustomTextField } from "../../../styles";
 import { Student } from "../interfaces/student.interface";
 import { useNavigate } from "react-router-dom";
 import { LocalSession } from "../../../shared/session";
+import { Validator } from "../../../validations";
 
 export default function StudentsSearchBar() {
   const [searchFilter, setSearchFilter] = useState("email");
   const [searchValue, setSearchValue] = useState("");
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [searchHelper, setSearchHelper] = useState({
+    error: false,
+    message: "",
+  });
 
   useEffect(() => {
     let array: Student[] = [];
@@ -40,28 +45,46 @@ export default function StudentsSearchBar() {
 
   const handleTypeSearch = (event: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(event.target.value);
+    try {
+      Validator.checkSearchField(event.target.value);
+      searchHelper.error = false;
+    } catch (error: any) {
+      setSearchHelper({ error: true, message: error.message });
+    }
+  };
+
+  const validate = (): boolean => {
+    try {
+      Validator.checkSearchField(searchValue);
+      return true;
+    } catch (error: any) {
+      dispatch(showToastError({ content: [error.message] }));
+      return false;
+    }
   };
 
   const handleSearchStudents = async () => {
-    try {
-      const response = await dispatch(
-        getStudentsAsync({
-          auth: LocalSession.getSession().token,
-          email: searchFilter === "email" ? searchValue : "",
-          name: searchFilter === "name" ? searchValue : "",
-        })
-      );
-      if (response.payload.message === "Unauthorized") {
-        dispatch(showToastError({ content: ["Tu sesión ha expirado"] }));
-        navigate("/login", { replace: true });
-      } else if (
-        response.payload.statusCode < 2000 ||
-        response.payload.statusCode > 299
-      ) {
-        dispatch(showToastError({ content: response.payload.message }));
+    if (validate()) {
+      try {
+        const response = await dispatch(
+          getStudentsAsync({
+            auth: LocalSession.getSession().token,
+            email: searchFilter === "email" ? searchValue : "",
+            name: searchFilter === "name" ? searchValue : "",
+          })
+        );
+        if (response.payload.message === "Unauthorized") {
+          dispatch(showToastError({ content: ["Tu sesión ha expirado"] }));
+          navigate("/login", { replace: true });
+        } else if (
+          response.payload.statusCode < 2000 ||
+          response.payload.statusCode > 299
+        ) {
+          dispatch(showToastError({ content: response.payload.message }));
+        }
+      } catch (error) {
+        containError();
       }
-    } catch (error) {
-      containError();
     }
   };
 
@@ -76,13 +99,17 @@ export default function StudentsSearchBar() {
         <Grid container columnSpacing={3} rowSpacing={3}>
           <Grid item xs={12} md={6}>
             <CustomTextField
+              error={searchHelper.error}
               autoFocus
               sx={{ display: "flex" }}
               id="outlined-basic"
               value={searchValue}
               label="Búsqueda"
+              aria-label="Valor de búsqueda"
+              aria-required="true"
               variant="outlined"
               onChange={handleTypeSearch}
+              helperText={searchHelper.error ? searchHelper.message : ""}
             />
           </Grid>
           <Grid item xs={12} md={4}>
@@ -98,6 +125,8 @@ export default function StudentsSearchBar() {
                   sx={{ color: "white" }}
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
+                  aria-label="Criterio de búsqueda"
+                  aria-required="true"
                   value={searchFilter}
                   label="Criterio"
                   onChange={handleFilterSelection}
@@ -111,6 +140,8 @@ export default function StudentsSearchBar() {
           <Grid item md={2} xs={12}>
             <Button
               id="searchButton"
+              aria-label="Buscar estudiante"
+              aria-required="true"
               sx={{
                 height: "100%",
                 width: "100%",

@@ -156,6 +156,8 @@ export function StudentSchedule() {
               renderInput={(params) => (
                 <CustomTextField
                   id="calendar"
+                  aria-label="Fecha de clases"
+                  aria-required="true"
                   sx={{ display: "flex" }}
                   {...params}
                 />

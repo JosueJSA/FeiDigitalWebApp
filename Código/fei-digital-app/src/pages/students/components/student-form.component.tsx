@@ -25,6 +25,7 @@ import ForwardToInboxIcon from "@mui/icons-material/ForwardToInbox";
 import emailjs from "@emailjs/browser";
 import { setStudntName } from "../../../shared/navbar/navbarSlice";
 import { LocalSession } from "../../../shared/session";
+import { Validator } from "../../../validations";
 
 export function StudentForm() {
   const [email, setEmail] = useState("");
@@ -32,6 +33,18 @@ export function StudentForm() {
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("Disponible");
   const [code, setCode] = useState("");
+  const [emailHelper, setEmailHelper] = useState({
+    error: false,
+    message: "",
+  });
+  const [nameHelper, setNameHelper] = useState({
+    error: false,
+    message: "",
+  });
+  const [passwordHelper, setPasswordHelper] = useState({
+    error: false,
+    message: "",
+  });
   const [codeSend, setCodeSend] = useState(
     Math.floor(Math.random() * (1000000 - 100000 + 1)) + 100000
   );
@@ -48,19 +61,33 @@ export function StudentForm() {
   }, [student.id]);
 
   const handleAddStudent = async () => {
-    try {
-      if (code === codeSend.toString()) {
-        const response = await dispatch(
-          addStudentAsync({ email, password, name })
-        );
-        handleResponse(response);
-      } else {
-        dispatch(
-          showToastError({ content: ["Código de verificación incorrecto"] })
-        );
+    if (validate()) {
+      try {
+        if (code === codeSend.toString()) {
+          const response = await dispatch(
+            addStudentAsync({ email, password, name })
+          );
+          handleResponse(response);
+        } else {
+          dispatch(
+            showToastError({ content: ["Código de verificación incorrecto"] })
+          );
+        }
+      } catch (error) {
+        containError();
       }
-    } catch (error) {
-      containError();
+    }
+  };
+
+  const validate = (): boolean => {
+    try {
+      Validator.checkMail(email);
+      Validator.checkName(name);
+      Validator.checkPassword(password);
+      return true;
+    } catch (error: any) {
+      dispatch(showToastError({ content: [error.message] }));
+      return false;
     }
   };
 
@@ -81,17 +108,19 @@ export function StudentForm() {
   };
 
   const handleUpdateStudent = async () => {
-    try {
-      const response = await dispatch(
-        updateStudentAsync({
-          studentId: student.id!,
-          student: { email, name, password, status },
-          auth: LocalSession.getSession().token,
-        })
-      );
-      handleResponse(response);
-    } catch (error) {
-      containError();
+    if (validate()) {
+      try {
+        const response = await dispatch(
+          updateStudentAsync({
+            studentId: student.id!,
+            student: { email, name, password, status },
+            auth: LocalSession.getSession().token,
+          })
+        );
+        handleResponse(response);
+      } catch (error) {
+        containError();
+      }
     }
   };
 
@@ -115,14 +144,32 @@ export function StudentForm() {
   const handleTypeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCodeSend(Math.floor(Math.random() * (1000000 - 100000 + 1)) + 100000);
     setEmail(event.target.value);
+    try {
+      Validator.checkMail(event.target.value);
+      emailHelper.error = false;
+    } catch (error: any) {
+      setEmailHelper({ error: true, message: error.message });
+    }
   };
 
   const handleTypeName = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value);
+    try {
+      Validator.checkName(event.target.value);
+      nameHelper.error = false;
+    } catch (error: any) {
+      setNameHelper({ error: true, message: error.message });
+    }
   };
 
   const handleTypePassword = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
+    try {
+      Validator.checkPassword(event.target.value);
+      passwordHelper.error = false;
+    } catch (error: any) {
+      setPasswordHelper({ error: true, message: error.message });
+    }
   };
 
   const handleTypeCode = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -141,33 +188,47 @@ export function StudentForm() {
     <form>
       <Stack sx={{ color: "white" }} spacing={4} direction="column">
         <CustomTextField
+          error={emailHelper.error}
           value={email}
           id="email"
           label="Correo electrónico"
+          aria-label="Correo electrónico"
+          aria-required="true"
           variant="outlined"
           onChange={handleTypeEmail}
+          helperText={emailHelper.error ? emailHelper.message : ""}
         />
         <CustomTextField
+          error={nameHelper.error}
           value={name}
           id="name"
           label="Nombre"
+          aria-label="Nombre"
+          aria-required="true"
           variant="outlined"
           onChange={handleTypeName}
+          helperText={nameHelper.error ? nameHelper.message : ""}
         />
         <CustomTextField
+          error={passwordHelper.error}
           value={password}
           id="password"
           label="Contraseña"
+          aria-label="Contraseña"
+          aria-required="true"
           type="password"
           autoComplete="current-password"
           onChange={handleTypePassword}
+          helperText={passwordHelper.error ? passwordHelper.message : ""}
         />
         {!LocalSession.getSession().token ? (
           <Grid container>
-            <Grid item xs={12} md={3}>
+            <Grid item xs={12} lg={3}>
               <Button
                 onClick={handleSendMail}
                 variant="contained"
+                aria-label="Enviar código de verificación"
+                aria-required="true"
                 sx={{
                   backgroundColor: "#31E1F7",
                   color: "black",
@@ -180,11 +241,13 @@ export function StudentForm() {
                 Enviar
               </Button>
             </Grid>
-            <Grid item xs={12} md={9}>
+            <Grid item xs={12} lg={9}>
               <CustomTextField
-                sx={{ display: "flex" }}
+                sx={{ display: "flex", width: "100%" }}
                 value={code}
                 id="standard-code-input"
+                aria-label="Código de verificación"
+                aria-required="true"
                 placeholder="Escribe el código de verificación"
                 autoComplete="current-password"
                 onChange={handleTypeCode}
@@ -209,6 +272,8 @@ export function StudentForm() {
             labelId="demo-simple-select-label"
             id="status"
             label="Estado en el sistema"
+            aria-label="Estado"
+            aria-required="true"
             value={status}
             onChange={handleSetStatus}
           >
@@ -221,6 +286,8 @@ export function StudentForm() {
         {LocalSession.getSession().token ? (
           <Button
             id="updateButton"
+            aria-label="Actualizar estudiante"
+            aria-required="true"
             onClick={handleUpdateStudent}
             variant="contained"
             sx={{
@@ -235,6 +302,8 @@ export function StudentForm() {
         ) : (
           <Button
             id="addButton"
+            aria-label="Agregar estudiante"
+            aria-required="true"
             onClick={handleAddStudent}
             variant="contained"
             sx={{

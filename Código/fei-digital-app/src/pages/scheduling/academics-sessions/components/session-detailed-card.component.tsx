@@ -62,6 +62,8 @@ export function SessionDetailedCard(props: {
               id={props.session.id + "watch"}
               onClick={handleWatchLocation}
               color="info"
+              aria-label="Ver ubicación de clase"
+              aria-required="true"
               variant="outlined"
             >
               Ver clase
@@ -70,6 +72,8 @@ export function SessionDetailedCard(props: {
               id={props.session.id + "start"}
               onClick={handleStartClass}
               color="success"
+              aria-label="Iniciar clase"
+              aria-required="true"
               variant="outlined"
             >
               Iniciar

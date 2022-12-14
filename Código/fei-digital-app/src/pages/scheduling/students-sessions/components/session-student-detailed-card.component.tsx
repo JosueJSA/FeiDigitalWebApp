@@ -57,6 +57,8 @@ export function SessionStudentDetailedCard(props: {
               id={props.session.id}
               onClick={handleClickWatch}
               variant="outlined"
+              aria-label="Ver ubicación"
+              aria-required="true"
               startIcon={<RemoveRedEyeIcon />}
             >
               Ver ubicación

@@ -139,6 +139,8 @@ export function Navbar() {
           {getPages().length !== 0 ? (
             <Button
               id="optionsButton"
+              aria-label="Buscar cursos"
+              aria-required="true"
               onClick={handleSearchCourses}
               sx={{ borderColor: "#00B8DD", color: "#00B8DD", mr: "1rem" }}
               variant="outlined"

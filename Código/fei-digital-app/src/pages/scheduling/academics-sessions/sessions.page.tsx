@@ -7,7 +7,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import AddIcon from "@mui/icons-material/Add";
 import {
@@ -130,43 +130,46 @@ export function Sessions() {
           </Typography>
         </motion.div>
         <Divider sx={{ my: "2rem", mb: "2rem", backgroundColor: "#31E1F7" }} />
-        <Stack spacing={2}>
-          {sessions && sessions.length > 0 ? (
-            sessions.map((session) => (
+        <Fragment>
+          <Stack spacing={2}>
+            {sessions && sessions.length > 0 ? (
+              sessions.map((session) => (
+                <motion.div
+                  key={session.id!}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, x: [100, -30, 0] }}
+                  transition={{ duration: 0.5 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <ClassSessionCard
+                    key={session.id!}
+                    session={session}
+                    onOpenDeleteDialog={handleOpenDeleteDialog}
+                  />
+                </motion.div>
+              ))
+            ) : (
               <motion.div
-                key={session.id!}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, x: [100, -30, 0] }}
-                transition={{ duration: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}
                 exit={{ opacity: 0 }}
               >
-                <ClassSessionCard
-                  key={session.id!}
-                  session={session}
-                  onOpenDeleteDialog={handleOpenDeleteDialog}
-                />
+                <Alert severity="info" sx={{ textAlign: "left" }}>
+                  <AlertTitle>Sin resultados</AlertTitle>
+                  No hay resultados para mostrar de acuerdo a la búsqueda
+                </Alert>
               </motion.div>
-            ))
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
-              exit={{ opacity: 0 }}
-            >
-              <Alert severity="info" sx={{ textAlign: "left" }}>
-                <AlertTitle>Sin resultados</AlertTitle>
-                No hay resultados para mostrar de acuerdo a la búsqueda
-              </Alert>
-            </motion.div>
-          )}
-        </Stack>
+            )}
+          </Stack>
+        </Fragment>
       </Container>
       <Fab
         sx={{ position: "absolute", bottom: 20, right: 20 }}
         onClick={handleAddClassSession}
         color="success"
-        aria-label="add"
+        aria-label="Agregar clase"
+        aria-required="true"
       >
         <AddIcon />
       </Fab>

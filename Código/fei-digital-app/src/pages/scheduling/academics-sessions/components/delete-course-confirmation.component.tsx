@@ -41,8 +41,7 @@ export function CourseDeleteConfirmation(props: {
     <Dialog
       open={props.opened}
       onClose={handleCloseDialog}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
+      aria-labelledby="Confirmación de eliminación de curso"
     >
       <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
       <DialogContent>
@@ -52,10 +51,21 @@ export function CourseDeleteConfirmation(props: {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseDialog} autoFocus>
+        <Button
+          onClick={handleCloseDialog}
+          autoFocus
+          aria-label="Cancela eliminación de curso"
+          aria-required="true"
+        >
           Cancelar
         </Button>
-        <Button onClick={handleClickDelete}>Aceptar</Button>
+        <Button
+          onClick={handleClickDelete}
+          aria-label="Aceptar eliminación de curso"
+          aria-required="true"
+        >
+          Aceptar
+        </Button>
       </DialogActions>
     </Dialog>
   );

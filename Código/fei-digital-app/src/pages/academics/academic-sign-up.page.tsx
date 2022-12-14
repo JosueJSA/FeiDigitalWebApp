@@ -95,7 +95,6 @@ export function AcademicSignUp() {
             </Typography>
             <AcademicForm />
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

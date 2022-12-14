@@ -86,7 +86,6 @@ export function StudentEdition() {
             </Typography>
             <StudentForm />
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

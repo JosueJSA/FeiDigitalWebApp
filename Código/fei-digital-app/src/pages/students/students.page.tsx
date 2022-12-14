@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addPage } from "../../shared/breadcrumns/breadcrumbsSlice";
@@ -53,33 +53,35 @@ export function Students() {
         <StudentsSearchBar />
       </motion.div>
       <Divider sx={{ my: "2rem", mb: "2rem", backgroundColor: "#31E1F7" }} />
-      <Stack spacing={2}>
-        {studentList.length > 0 ? (
-          studentList.map((student) => (
+      <Fragment>
+        <Stack spacing={2}>
+          {studentList.length > 0 ? (
+            studentList.map((student) => (
+              <motion.div
+                key={student.id!}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, y: 20 }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+              >
+                <StudentCard key={student.id!} student={student} />
+              </motion.div>
+            ))
+          ) : (
             <motion.div
-              key={student.id!}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: 20 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
               exit={{ opacity: 0 }}
             >
-              <StudentCard key={student.id!} student={student} />
+              <Alert severity="info" sx={{ textAlign: "left" }}>
+                <AlertTitle>Sin resultados</AlertTitle>
+                No hay resultados para mostrar de acuerdo a la búsqueda
+              </Alert>
             </motion.div>
-          ))
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            exit={{ opacity: 0 }}
-          >
-            <Alert severity="info" sx={{ textAlign: "left" }}>
-              <AlertTitle>Sin resultados</AlertTitle>
-              No hay resultados para mostrar de acuerdo a la búsqueda
-            </Alert>
-          </motion.div>
-        )}
-      </Stack>
+          )}
+        </Stack>
+      </Fragment>
       <Toaster />
     </Container>
   );

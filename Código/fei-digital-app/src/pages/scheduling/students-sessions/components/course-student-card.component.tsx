@@ -59,6 +59,8 @@ export function CourseStudentCard(props: {
           <Stack spacing={0} direction={"row"}>
             <Button
               id={props.course.nrc + "follow"}
+              aria-label="Seguir clase"
+              aria-required="true"
               onClick={handleFollowCourse}
               sx={{
                 display: props.option === "follow" ? "felx" : "none",
@@ -75,6 +77,8 @@ export function CourseStudentCard(props: {
             </Button>
             <Button
               id={props.course.nrc + "unfollow"}
+              aria-label="Dejar de seguir clase"
+              aria-required="true"
               onClick={handleUnfollowCourse}
               sx={{
                 display: props.option !== "follow" ? "felx" : "none",

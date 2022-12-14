@@ -42,6 +42,7 @@ export default function AcademicCard(props: {
               startIcon={<RemoveRedEyeIcon />}
               onClick={handleRequest}
               aria-label="Ver estudiante"
+              aria-required="true"
               sx={{
                 borderColor: "#00B8DD",
                 color: "white",

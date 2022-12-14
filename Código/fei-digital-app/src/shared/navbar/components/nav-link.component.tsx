@@ -25,7 +25,7 @@ export function NavLink(props: { key: string; page: NavOption }) {
         sx={{ color: "white" }}
         key={props.page.id}
       >
-        <Typography component={"h1"}>{props.page.icon}</Typography>
+        <Typography>{props.page.icon}</Typography>
       </Button>
     </Tooltip>
   );

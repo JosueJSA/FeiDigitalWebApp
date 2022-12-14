@@ -27,6 +27,7 @@ import { FeiMapEconexSecond } from "../../common/econex/fei-map-econex-second.co
 import { AcademicSessionsSocket } from "../academic-sessions-socket.manager";
 import { useNavigate } from "react-router-dom";
 import { showToastError } from "../../../../shared/toast/toastSlice";
+import { Validator } from "../../../../validations";
 
 export function ClassSessionForm(props: { key: string; type: string }) {
   const [alignment, setAlignment] = React.useState<string>("econex-first");
@@ -70,6 +71,17 @@ export function ClassSessionForm(props: { key: string; type: string }) {
     setDate(newValue);
   };
 
+  const validate = (): boolean => {
+    try {
+      Validator.checkSessionDates(date!.toDate(), limitDate!.toDate(), checked);
+      Validator.checkTimes(initialTime!.toDate(), endTime!.toDate());
+      return true;
+    } catch (error: any) {
+      dispatch(showToastError({ content: [error.message] }));
+      return false;
+    }
+  };
+
   const handleLimitDateSelection = (newValue: Dayjs | null) => {
     setLimitDate(newValue);
   };
@@ -83,40 +95,44 @@ export function ClassSessionForm(props: { key: string; type: string }) {
   };
 
   const handleAddClassSession = (event: React.MouseEvent<HTMLElement>) => {
-    try {
-      AcademicSessionsSocket.addClassSessionEvent({
-        id: "identifier",
-        classDate: date!.toDate().toISOString(),
-        initialTime: initialTime!.toDate().toISOString(),
-        endTime: endTime!.toDate().toISOString(),
-        repeated: checked,
-        courseNrc: course!.nrc,
-        classroomCode: classroom,
-        classDateEnd: limitDate!.toDate().toISOString(),
-        classroomName: "",
-      });
-    } catch (error) {
-      dispatch(showToastError({ content: ["Código de error: 0x000xp0010"] }));
-      navigate("/home", { replace: true });
+    if (validate()) {
+      try {
+        AcademicSessionsSocket.addClassSessionEvent({
+          id: "identifier",
+          classDate: date!.toDate().toISOString(),
+          initialTime: initialTime!.toDate().toISOString(),
+          endTime: endTime!.toDate().toISOString(),
+          repeated: checked,
+          courseNrc: course!.nrc,
+          classroomCode: classroom,
+          classDateEnd: limitDate!.toDate().toISOString(),
+          classroomName: "",
+        });
+      } catch (error) {
+        dispatch(showToastError({ content: ["Código de error: 0x000xp0010"] }));
+        navigate("/home", { replace: true });
+      }
     }
   };
 
   const handleUpdateSession = (event: React.MouseEvent<HTMLElement>) => {
-    try {
-      AcademicSessionsSocket.updateClassSessionEvent(session!.id!, {
-        id: "identifier",
-        classDate: date!.toDate().toISOString(),
-        initialTime: initialTime!.toDate().toISOString(),
-        endTime: endTime!.toDate().toISOString(),
-        repeated: checked,
-        courseNrc: course!.nrc,
-        classroomCode: classroom,
-        classDateEnd: limitDate!.toDate().toISOString(),
-        classroomName: "",
-      });
-    } catch (error) {
-      dispatch(showToastError({ content: ["Código de error: 0x000xp0010"] }));
-      navigate("/home", { replace: true });
+    if (validate()) {
+      try {
+        AcademicSessionsSocket.updateClassSessionEvent(session!.id!, {
+          id: "identifier",
+          classDate: date!.toDate().toISOString(),
+          initialTime: initialTime!.toDate().toISOString(),
+          endTime: endTime!.toDate().toISOString(),
+          repeated: checked,
+          courseNrc: course!.nrc,
+          classroomCode: classroom,
+          classDateEnd: limitDate!.toDate().toISOString(),
+          classroomName: "",
+        });
+      } catch (error) {
+        dispatch(showToastError({ content: ["Código de error: 0x000xp0010"] }));
+        navigate("/home", { replace: true });
+      }
     }
   };
 
@@ -148,16 +164,16 @@ export function ClassSessionForm(props: { key: string; type: string }) {
   };
 
   return (
-    <Card
-      elevation={6}
-      sx={{
-        backgroundColor: "#171D2C",
-        color: "white",
-        padding: "2rem",
-      }}
-    >
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <form>
+    <form>
+      <Card
+        elevation={6}
+        sx={{
+          backgroundColor: "#171D2C",
+          color: "white",
+          padding: "2rem",
+        }}
+      >
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <DesktopDatePicker
@@ -168,6 +184,8 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 renderInput={(params) => (
                   <CustomTextField
                     id="startDate"
+                    aria-label="Fecha de clase"
+                    aria-required="true"
                     sx={{ display: "flex" }}
                     {...params}
                   />
@@ -180,7 +198,12 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 value={initialTime}
                 onChange={handleInitialTimeSelection}
                 renderInput={(params) => (
-                  <CustomTextField id="initTime" {...params} />
+                  <CustomTextField
+                    id="initTime"
+                    aria-label="Horaa de inicio"
+                    aria-required="true"
+                    {...params}
+                  />
                 )}
               />
             </Grid>
@@ -190,13 +213,20 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                 value={endTime}
                 onChange={handleEndTimeSelection}
                 renderInput={(params) => (
-                  <CustomTextField id="endTime" {...params} />
+                  <CustomTextField
+                    id="endTime"
+                    aria-label="Hora de fin de clase"
+                    aria-required="true"
+                    {...params}
+                  />
                 )}
               />
             </Grid>
             <Grid item xs={6}>
               <Button
                 id="location"
+                aria-label="Ver ubicación"
+                aria-required="true"
                 color="info"
                 onClick={toggleDrawer(true)}
                 sx={{ display: "flex", minWidth: "maxWidth" }}
@@ -211,6 +241,8 @@ export function ClassSessionForm(props: { key: string; type: string }) {
             <Grid item xs={12} sx={{ textAlign: "left" }}>
               <FormGroup>
                 <FormControlLabel
+                  aria-label="Repetir clase"
+                  aria-required="true"
                   control={
                     <Checkbox checked={checked} onChange={handleChange} />
                   }
@@ -224,6 +256,8 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                   renderInput={(params) => (
                     <CustomTextField
                       id="limitDate"
+                      aria-label="Fecha limite de clases"
+                      aria-required="true"
                       sx={{ display: checked ? "flex" : "none" }}
                       {...params}
                     />
@@ -235,6 +269,8 @@ export function ClassSessionForm(props: { key: string; type: string }) {
               {props.type === "update" ? (
                 <Button
                   id="saveButton"
+                  aria-label="Actualizar clase"
+                  aria-required="true"
                   variant="contained"
                   onClick={handleUpdateSession}
                   sx={{
@@ -249,6 +285,8 @@ export function ClassSessionForm(props: { key: string; type: string }) {
               ) : (
                 <Button
                   id="addButton"
+                  aria-label="Registrar clase"
+                  aria-required="true"
                   variant="contained"
                   onClick={handleAddClassSession}
                   sx={{
@@ -266,10 +304,15 @@ export function ClassSessionForm(props: { key: string; type: string }) {
           <Drawer anchor={"bottom"} open={isOpen} onClose={toggleDrawer(false)}>
             <Grid sx={{ margin: "1rem" }} container>
               <Stack direction={"row"}>
-                <Typography variant="body1">
+                <Typography component={"h2"} variant="body1">
                   Selecciona el aula de clase
                 </Typography>
-                <Button onClick={toggleDrawer(false)} variant="contained">
+                <Button
+                  aria-label="Cerrar croquis"
+                  aria-required="true"
+                  onClick={toggleDrawer(false)}
+                  variant="contained"
+                >
                   Cerrar
                 </Button>
               </Stack>
@@ -280,18 +323,23 @@ export function ClassSessionForm(props: { key: string; type: string }) {
                     value={alignment}
                     exclusive
                     onChange={handleAlignment}
-                    aria-label="text alignment"
+                    aria-label="Planta baja"
+                    aria-required="true"
                   >
                     <ToggleButton
                       value="econex-first"
                       aria-label="left aligned"
                     >
-                      <Typography variant="h6">
+                      <Typography component="h3" variant="h6">
                         Econex - Primera planta
                       </Typography>
                     </ToggleButton>
-                    <ToggleButton value="econex-second" aria-label="centered">
-                      <Typography variant="h6">
+                    <ToggleButton
+                      value="econex-second"
+                      aria-label="Planta alta"
+                      aria-required="true"
+                    >
+                      <Typography component="h3" variant="h6">
                         Econex - Segunda planta
                       </Typography>
                     </ToggleButton>
@@ -321,9 +369,9 @@ export function ClassSessionForm(props: { key: string; type: string }) {
               </Grid>
             </Grid>
           </Drawer>
-        </form>
-      </LocalizationProvider>
-      <Toaster />
-    </Card>
+        </LocalizationProvider>
+        <Toaster />
+      </Card>
+    </form>
   );
 }

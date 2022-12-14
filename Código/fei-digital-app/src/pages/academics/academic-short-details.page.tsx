@@ -99,7 +99,6 @@ export function AcademicShortDetails() {
               <br />
             </Typography>
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

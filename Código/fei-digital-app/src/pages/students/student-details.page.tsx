@@ -97,7 +97,6 @@ export function StudentDetails() {
               {new Date(student.updated!).toLocaleDateString()} <br />
             </Typography>
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

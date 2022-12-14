@@ -9,7 +9,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export function UserTypeDialog() {
@@ -29,6 +29,8 @@ export function UserTypeDialog() {
       <Button
         onClick={() => setOpened(true)}
         size="small"
+        aria-label="Crear cuenta"
+        aria-required="true"
         sx={{ color: "white" }}
       >
         No tengo cuenta
@@ -44,19 +46,21 @@ export function UserTypeDialog() {
         >
           <Typography variant="h6">Selecciona el perfil a registrar</Typography>
           <Divider sx={{ backgroundColor: "#31E1F7", my: ".5rem" }} />
-          <List>
-            {Object.keys(userTypes).map((type) => (
-              <ListItem
-                onClick={() => handleSelectProfile(type)}
-                key={type}
-                disablePadding
-              >
-                <ListItemButton>
-                  <ListItemText primary={type} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
+          <Fragment>
+            <List>
+              {Object.keys(userTypes).map((type) => (
+                <ListItem
+                  onClick={() => handleSelectProfile(type)}
+                  key={type}
+                  disablePadding
+                >
+                  <ListItemButton>
+                    <ListItemText primary={type} />
+                  </ListItemButton>
+                </ListItem>
+              ))}
+            </List>
+          </Fragment>
         </DialogContent>
       </Dialog>
     </div>

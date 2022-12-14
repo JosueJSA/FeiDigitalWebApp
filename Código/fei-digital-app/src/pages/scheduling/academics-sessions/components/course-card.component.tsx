@@ -52,6 +52,7 @@ export function CourseCard(props: {
               id={props.course.nrc + "watch"}
               onClick={handleConsultCourse}
               aria-label="Ver clases"
+              aria-required="true"
               variant="outlined"
               sx={{ borderColor: "#00B8DD", color: "white" }}
             >
@@ -61,6 +62,7 @@ export function CourseCard(props: {
               id={props.course.nrc + "update"}
               onClick={handleUpdateDialog}
               aria-label="Editar curso"
+              aria-required="true"
               variant="outlined"
               sx={{ borderColor: "#00B8DD", color: "white" }}
             >
@@ -70,6 +72,7 @@ export function CourseCard(props: {
               id={props.course.nrc + "delete"}
               onClick={handleDeleteDialog}
               aria-label="Eliminar curso"
+              aria-required="true"
               variant="outlined"
               sx={{ borderColor: "#00B8DD", color: "white" }}
             >

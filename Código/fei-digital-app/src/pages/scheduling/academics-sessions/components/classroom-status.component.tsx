@@ -33,14 +33,17 @@ export function ClassroomStatus() {
       <Grid container rowSpacing={3}>
         <Grid item xs={12} md={10} sx={{ textAlign: "left" }}>
           {session ? (
-            <Typography variant="body1">
-              Nrc: {session.nrc} Nombre: {session.name}
-              <br />
-              Fecha de clase: {new Date(session.classDate).toDateString()}{" "}
-              <br />
-              Aula: {session.classroomName} Estado del aula:{" "}
-              {session.classroomStatus}
-            </Typography>
+            <div>
+              <Typography component="h3" variant="body1">
+                Nrc: {session.nrc} Nombre: {session.name}
+              </Typography>
+              <Typography variant="body1">
+                Fecha de clase: {new Date(session.classDate).toDateString()}{" "}
+                <br />
+                Aula: {session.classroomName} Estado del aula:{" "}
+                {session.classroomStatus}
+              </Typography>
+            </div>
           ) : (
             <h1>loading...</h1>
           )}
@@ -49,6 +52,8 @@ export function ClassroomStatus() {
           <Stack spacing={1} direction={"column"}>
             <Button
               id={session.id + "classroom"}
+              aria-label="Terminar clase"
+              aria-required="true"
               onClick={handleEndSession}
               color="error"
               variant="contained"

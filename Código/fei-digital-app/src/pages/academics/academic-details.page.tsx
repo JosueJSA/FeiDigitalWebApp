@@ -100,7 +100,6 @@ export function AcademicDetails() {
               <br />
             </Typography>
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

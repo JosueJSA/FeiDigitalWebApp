@@ -86,7 +86,8 @@ export function ClassSessionCard(props: {
             <Button
               id={props.session.id + "watch"}
               variant="outlined"
-              aria-label="Ver clases"
+              aria-label="Ver ubicación"
+              aria-required="true"
               sx={{ color: "white" }}
               onClick={handleWatchLocation}
               startIcon={<RemoveRedEyeIcon />}
@@ -98,6 +99,7 @@ export function ClassSessionCard(props: {
               variant="outlined"
               onClick={handleUpdateClassSession}
               aria-label="Editar clase"
+              aria-required="true"
               sx={{ color: "white" }}
               startIcon={<EditIcon />}
             >
@@ -107,8 +109,9 @@ export function ClassSessionCard(props: {
               id={props.session.id + "delete"}
               variant="outlined"
               color="error"
-              onClick={handleDeleteClassSession}
               aria-label="Eliminar clase"
+              aria-required="true"
+              onClick={handleDeleteClassSession}
               sx={{ color: "white" }}
               startIcon={<DeleteIcon />}
             >

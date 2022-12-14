@@ -72,6 +72,8 @@ export function NavProfile() {
         <Tooltip title="Ver opciones">
           <IconButton
             id="profileOptionsButton"
+            aria-label="Perfil"
+            aria-required="true"
             onClick={handleOpenUserMenu}
             sx={{ p: 0 }}
           >

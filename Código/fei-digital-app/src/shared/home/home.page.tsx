@@ -46,8 +46,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -78,8 +76,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -110,8 +106,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -142,8 +136,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -178,8 +170,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image=""
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -210,8 +200,6 @@ export function Home() {
                     sx={{ display: "none" }}
                     component="img"
                     height="140"
-                    image=""
-                    alt="green iguana"
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">

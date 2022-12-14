@@ -11,7 +11,7 @@ import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs, { Dayjs } from "dayjs";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { convertToDateTime } from "../constants";
 import {
@@ -170,6 +170,8 @@ export function AcademicSchedule() {
               renderInput={(params) => (
                 <CustomTextField
                   id="calendar"
+                  aria-label="Fecha de clases"
+                  aria-required="true"
                   sx={{ display: "flex" }}
                   {...params}
                 />
@@ -190,33 +192,35 @@ export function AcademicSchedule() {
           <ClassroomStatus />
         </motion.div>
         <Divider sx={{ my: "2rem", mb: "2rem", backgroundColor: "#31E1F7" }} />
-        <Stack spacing={2}>
-          {sessions && sessions.length > 0 ? (
-            sessions.map((session) => (
+        <Fragment>
+          <Stack spacing={2}>
+            {sessions && sessions.length > 0 ? (
+              sessions.map((session) => (
+                <motion.div
+                  key={session.id!}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, y: [-200, 100, 0] }}
+                  transition={{ duration: 0.5 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <SessionDetailedCard key={session.id!} session={session} />
+                </motion.div>
+              ))
+            ) : (
               <motion.div
-                key={session.id!}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [-200, 100, 0] }}
-                transition={{ duration: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1.5 }}
                 exit={{ opacity: 0 }}
               >
-                <SessionDetailedCard key={session.id!} session={session} />
+                <Alert severity="info" sx={{ textAlign: "left" }}>
+                  <AlertTitle>Sin resultados</AlertTitle>
+                  No hay resultados para mostrar de acuerdo a la búsqueda
+                </Alert>
               </motion.div>
-            ))
-          ) : (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
-              exit={{ opacity: 0 }}
-            >
-              <Alert severity="info" sx={{ textAlign: "left" }}>
-                <AlertTitle>Sin resultados</AlertTitle>
-                No hay resultados para mostrar de acuerdo a la búsqueda
-              </Alert>
-            </motion.div>
-          )}
-        </Stack>
+            )}
+          </Stack>
+        </Fragment>
       </LocalizationProvider>
       <Toaster />
     </Container>

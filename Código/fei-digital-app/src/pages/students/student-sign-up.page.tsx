@@ -22,7 +22,7 @@ export function StudentSignUp() {
   });
 
   return (
-    <Container maxWidth="sm" sx={{ textAlign: "left", mb: "10rem" }}>
+    <Container maxWidth="xs" sx={{ textAlign: "left", mb: "10rem" }}>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1, y: 20 }}
@@ -45,7 +45,6 @@ export function StudentSignUp() {
             </Typography>
             <StudentForm />
           </CardContent>
-          <CardActions></CardActions>
         </Card>
       </motion.div>
       <Toaster />

@@ -40,8 +40,7 @@ export function SessionDeleteConfirmation(props: {
     <Dialog
       open={props.opened}
       onClose={handleCloseDialog}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
+      aria-labelledby="Confirmación de eliminación de clase"
     >
       <DialogTitle id="alert-dialog-title">Confirmación</DialogTitle>
       <DialogContent>
@@ -50,10 +49,21 @@ export function SessionDeleteConfirmation(props: {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleCloseDialog} autoFocus>
+        <Button
+          onClick={handleCloseDialog}
+          autoFocus
+          aria-label="Cancelar eliminación de clase"
+          aria-required="true"
+        >
           Cancelar
         </Button>
-        <Button onClick={handleClickDelete}>Aceptar</Button>
+        <Button
+          onClick={handleClickDelete}
+          aria-label="Aceptar eliminación de clase"
+          aria-required="true"
+        >
+          Aceptar
+        </Button>
       </DialogActions>
     </Dialog>
   );

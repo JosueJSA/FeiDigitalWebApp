@@ -43,10 +43,11 @@ export default function StudentCard(props: { key: string; student: Student }) {
           <Stack spacing={2} direction={"row"}>
             <Button
               id={props.student.id + "watch"}
+              aria-label="Ver estudiante"
+              aria-required="true"
               variant="outlined"
               startIcon={<RemoveRedEyeIcon />}
               onClick={handleRequest}
-              aria-label="Ver estudiante"
               sx={{
                 borderColor: "#00B8DD",
                 color: "white",
@@ -63,6 +64,7 @@ export default function StudentCard(props: { key: string; student: Student }) {
               startIcon={<EditIcon />}
               onClick={handleEdit}
               aria-label="Editar estudiante"
+              aria-required="true"
               sx={{
                 borderColor: "#00B8DD",
                 color: "white",

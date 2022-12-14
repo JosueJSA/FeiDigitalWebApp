@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { addPage } from "../../shared/breadcrumns/breadcrumbsSlice";
@@ -89,33 +89,35 @@ export function Academics() {
         <AcademicsSearchBar />
       </motion.div>
       <Divider sx={{ my: "2rem", mb: "2rem", backgroundColor: "#31E1F7" }} />
-      <Stack spacing={2}>
-        {academicsList.length > 0 ? (
-          academicsList.map((academic) => (
+      <Fragment>
+        <Stack spacing={2}>
+          {academicsList.length > 0 ? (
+            academicsList.map((academic) => (
+              <motion.div
+                key={academic.id}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1, y: [100, -30, 0] }}
+                transition={{ duration: 0.5 }}
+                exit={{ opacity: 0 }}
+              >
+                <AcademicCard key={academic.id!} academic={academic} />
+              </motion.div>
+            ))
+          ) : (
             <motion.div
-              key={academic.id}
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: [100, -30, 0] }}
-              transition={{ duration: 0.5 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1.5 }}
               exit={{ opacity: 0 }}
             >
-              <AcademicCard key={academic.id!} academic={academic} />
+              <Alert severity="info" sx={{ textAlign: "left" }}>
+                <AlertTitle>Sin resultados</AlertTitle>
+                No hay resultados para mostrar de acuerdo a la búsqueda
+              </Alert>
             </motion.div>
-          ))
-        ) : (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
-            exit={{ opacity: 0 }}
-          >
-            <Alert severity="info" sx={{ textAlign: "left" }}>
-              <AlertTitle>Sin resultados</AlertTitle>
-              No hay resultados para mostrar de acuerdo a la búsqueda
-            </Alert>
-          </motion.div>
-        )}
-      </Stack>
+          )}
+        </Stack>
+      </Fragment>
       <Toaster />
     </Container>
   );
