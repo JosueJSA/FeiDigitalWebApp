@@ -30,6 +30,7 @@ export function AcademicForm() {
   const [position, setPosition] = useState("Docente");
   const [status, setStatus] = useState("Disponible");
   const [code, setCode] = useState("");
+  const [academicCode, setAcademicCode] = useState("");
   const academic = useAppSelector(selectAcademic);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -67,15 +68,18 @@ export function AcademicForm() {
   };
 
   const handleAddAcademic = (event: React.MouseEvent<HTMLElement>) => {
-    if (validate()) {
+    if (validate() && validateCode()) {
       if (code === codeSend.toString()) {
         try {
-          AcademicSocket.addAcademicEvent({
-            email,
-            fullName,
-            password,
-            position,
-          });
+          AcademicSocket.addAcademicEvent(
+            {
+              email,
+              fullName,
+              password,
+              position,
+            },
+            academicCode
+          );
         } catch (error) {
           containError();
         }
@@ -109,6 +113,21 @@ export function AcademicForm() {
       Validator.checkMail(email);
       Validator.checkName(fullName);
       Validator.checkPassword(password);
+      return true;
+    } catch (error: any) {
+      dispatch(showToastError({ content: [error.message] }));
+      return false;
+    }
+  };
+
+  const validateCode = (): boolean => {
+    try {
+      if (
+        academicCode === undefined ||
+        academicCode === null ||
+        academicCode.length <= 0
+      )
+        throw new Error("El código de registro debe ser llenado");
       return true;
     } catch (error: any) {
       dispatch(showToastError({ content: [error.message] }));
@@ -175,6 +194,12 @@ export function AcademicForm() {
     setStatus(event.target.value);
   };
 
+  const handleTypeAcademicCode = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setAcademicCode(event.target.value);
+  };
+
   return (
     <form>
       <Stack sx={{ color: "white" }} spacing={4} direction="column">
@@ -212,6 +237,19 @@ export function AcademicForm() {
           onChange={handleTypePassword}
           helperText={passwordHelper.error ? passwordHelper.message : ""}
         />
+        {localStorage.getItem("access_token") ? (
+          ""
+        ) : (
+          <CustomTextField
+            id="adminCode"
+            value={academicCode}
+            label="Codigo de académico"
+            aria-label="Código de académico"
+            aria-required="true"
+            autoComplete="current-password"
+            onChange={handleTypeAcademicCode}
+          />
+        )}
         <FormControl fullWidth>
           <InputLabel sx={{ color: "white" }} id="demo-simple-select-label">
             Cargo en la FEI

@@ -62,13 +62,14 @@ export abstract class AcademicSocket {
     return this.socket;
   };
 
-  static addAcademicEvent(academic: Academic): Socket {
+  static addAcademicEvent(academic: Academic, academicCode: string): Socket {
     this.socket.emit("add-academic", {
       email: academic.email,
       fullName: academic.fullName,
       password: academic.password,
       position: academic.position,
       feiLocationCode: "#113",
+      academicCode: academicCode,
     });
     return this.socket;
   }
