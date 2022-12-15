@@ -69,13 +69,13 @@ export class Validator {
 
   static checkSessionDates(initDate: Date, endDate: Date, compare: boolean) {
     if (compare) {
-      if (initDate.getUTCMilliseconds() > endDate.getUTCMilliseconds())
+      if (initDate > endDate)
         throw new Error("La fecha de inicio no puede ser mayor a la de fin");
     }
   }
 
   static checkTimes(initTime: Date, endTime: Date) {
-    if (initTime.getUTCMilliseconds() >= endTime.getUTCMilliseconds())
+    if (initTime >= endTime)
       throw new Error(
         "La hora de inicio no puede ser mayor o igual a la de fin"
       );
